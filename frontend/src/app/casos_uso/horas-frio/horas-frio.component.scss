@@ -1,0 +1,78 @@
+.titulo {
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.input {
+  height: 95px;
+  text-align: left;
+}
+
+.dato {
+  height: 95px;
+  text-align: left;
+
+  h1 {
+    float: right;
+    font-size: 35px;
+    font-style: oblique;
+    color: #1a32b9;
+    position: relative;
+    top: -18px;
+    clear: none;
+
+    p {
+      display: inline;
+      font-size: 19px;
+    }
+  }
+}
+
+
+
+
+
+apex-chart {
+  margin: 0;
+  padding: 0;
+}
+
+.chip-list {
+  width: 100%;
+}
+
+.map {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.card {
+  background-color: #ebebebc2;
+}
+
+.card:hover {
+  background-color: #dfdfdfc2;
+}
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+mat-card-title {
+  font-size: 19px;
+}

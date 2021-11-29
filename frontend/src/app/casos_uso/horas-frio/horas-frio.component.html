@@ -1,0 +1,195 @@
+<div class="row m-1 gx-2 gy-2 ">
+
+    <div class="col-12">
+        <mat-card class="input card ">
+            Seleccionade periodo... <br>
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Ingrese Rango de Fechas</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate placeholder="Inicio">
+                    <input matEndDate placeholder="Termino">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+        </mat-card>
+    </div>
+
+    <div class="col-6 col-lg-3 " style="margin-bottom: -18px">
+        <mat-card class="dato card">
+            <mat-card-title>Total</mat-card-title>
+            <mat-card-subtitle>Vicuña</mat-card-subtitle>
+            <h1 style="color: #1a32b9;"><b>110 </b>
+                <p>Hf</p>
+            </h1>
+        </mat-card>
+    </div>
+
+
+
+    <div class="col-6 col-lg-3" style="margin-bottom: -18px">
+        <mat-card class="dato card">
+            <mat-card-title>Promedio</mat-card-title>
+            <mat-card-subtitle>(9/6/20 - 20/6/20)</mat-card-subtitle>
+            <h1 style="color: #1a32b9;"><b>13 </b>
+                <p>Hf</p>
+            </h1>
+        </mat-card>
+    </div>
+
+    <div class="col-6 col-lg-3  " style="margin-bottom: -18px">
+        <mat-card class="dato card">
+            <mat-card-title>Promedio Seleccionado</mat-card-title>
+            <mat-card-subtitle>(12/6/20 - 19/6/20)</mat-card-subtitle>
+            <h1 style="color: #23814f;"><b>11 </b>
+                <p>Hf</p>
+            </h1>
+        </mat-card>
+    </div>
+
+
+
+    <div class="col-6 col-lg-3 " style="margin-bottom: -18px">
+        <mat-card class="dato card">
+            <mat-card-title>Total Seleccionado</mat-card-title>
+            <mat-card-subtitle>(12/6/20 - 19/6/20)</mat-card-subtitle>
+            <h1 style="color: #23814f;"><b>80 </b>
+                <p>Hf</p>
+            </h1>
+        </mat-card>
+    </div>
+
+
+
+    <!-- 
+    <mat-form-field class="chip-list" appearance="fill">
+        <mat-label>Estaciones Seleccionadas</mat-label>
+        <mat-chip-list #chipList aria-label="Estaciones seleccionadas">
+            <mat-chip *ngFor="let estacion of estaciones" [selectable]="false" [removable]="true"
+                (removed)="remove(estacion)">
+                {{estacion}}
+                <button matChipRemove *ngIf="true">
+                    <mat-icon>cancel</mat-icon>
+                </button>
+            </mat-chip>
+        </mat-chip-list>
+    </mat-form-field> -->
+
+    <div class="col-12 col-lg-6">
+        <mat-card class="card map">
+            <div class="d-flex flex-wrap justify-content-between pb-lg-1">
+    
+                <div>
+                    <mat-form-field style="margin-bottom: -15px;" appearance="fill">
+                        <mat-label>Tipo de Selección</mat-label>
+                        <mat-select>
+                            <mat-option [value]="'area'">
+                                Selección por Area
+                            </mat-option>
+                            <mat-option [value]="'individual'">
+                                Selección Individual
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+    
+                    <mat-form-field style="margin: 0px 0px -15px 14px" appearance="fill">
+                        <mat-label>Cálculo del Centro</mat-label>
+                        <mat-select>
+                            <mat-option [value]="'cercana'">
+                                Estacion mas Cercana
+                            </mat-option>
+                            <mat-option [value]="'line'">
+                                Linea de Costa Similar
+                            </mat-option>
+                            <mat-option [value]="'height'">
+                                Altura Similar
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+    
+    
+                <button mat-button [matMenuTriggerFor]="beforeMenu">
+                    <mat-icon>more_vert</mat-icon>
+                    Opciones
+                </button>
+                <mat-menu #beforeMenu="matMenu" xPosition="before">
+                    <mat-slide-toggle> Interpolacion </mat-slide-toggle>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+            </div>
+            <div class="h-100">
+                <google-map width="100%" height="100%" [options]="optionsMaps">
+                    <map-circle *ngIf="true" [options]="optionsCircle" (circleDragend)="changeCircle($event)"
+                        (radiusChanged)="changeCircle($event)" (centerChanged)="changeCircle($event)">
+                    </map-circle>
+                    <map-marker #marker="mapMarker" *ngFor="let mark of markers1;let i = index" [position]="mark.pos"
+                        [options]="mark.opt" (mapClick)="openInfoWindow(marker)">
+                    </map-marker>
+                    <map-heatmap-layer [data]="heatmapData" [options]="heatmapOptions"></map-heatmap-layer>
+                    <map-info-window>
+                        <h1>Info de la estacion x</h1>
+                    </map-info-window>
+                </google-map>
+            </div>
+    
+        </mat-card>
+    </div>
+
+
+
+    <div class="col-12 col-lg-6" style="max-height: 70vh;">
+        <mat-card class="card mb-2" >
+            <h1>Datos Estaciones Seleccionadas</h1>
+            <!-- <div style=" max-height: 290px; background-color: #23814f; overflow: auto;"> -->
+            <div style="  background-color: #23814f; overflow: auto;">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
+
+                    <!-- Fecha -->
+                    <ng-container matColumnDef="fecha">
+                        <th mat-header-cell *matHeaderCellDef> Estacion </th>
+                        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                    </ng-container>
+
+                    <!-- Acumulado -->
+                    <ng-container matColumnDef="acumulado">
+                        <th mat-header-cell *matHeaderCellDef> Hf Total <br> Acumulada </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <!-- Intensidad -->
+                    <ng-container matColumnDef="intensidad">
+                        <th mat-header-cell *matHeaderCellDef> Hf Promedio <br> Promedio </th>
+                        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                    </ng-container>
+
+                    <!-- Duracion -->
+                    <ng-container matColumnDef="duracion">
+                        <th mat-header-cell *matHeaderCellDef> Hf diario Max </th>
+                        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                    </ng-container>
+
+                    <!-- Acciones -->
+                    <ng-container matColumnDef="detalle">
+                        <th mat-header-cell *matHeaderCellDef style="text-align: right;"> Ver estacion </th>
+                        <td mat-cell *matCellDef="let element" style="text-align: right;">
+                            <mat-icon>search</mat-icon>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+        </mat-card>
+
+        <mat-card class="card">
+            <apx-chart [series]="chartOptionsLine.series" [chart]="chartOptionsLine.chart"
+                [xaxis]="chartOptionsLine.xaxis" [markers]="chartOptionsLine.markers" [stroke]="chartOptionsLine.stroke"
+                [yaxis]="chartOptionsLine.yaxis" [dataLabels]="chartOptionsLine.dataLabels"
+                [title]="chartOptionsLine.title" [fill]="chartOptionsLine.fill" [tooltip]="chartOptionsLine.tooltip"
+                [legend]="chartOptionsLine.legend"></apx-chart>
+        </mat-card>
+    </div>
+
+</div>

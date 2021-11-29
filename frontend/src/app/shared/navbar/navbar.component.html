@@ -1,0 +1,26 @@
+<nav class="navbar">
+	<div class="d-flex justify-content-between w-100 h-100 align-items-center">
+		<div class="logo" routerLink="/"><b> Demo Coquimbo Engine</b></div>
+
+		<button mat-flat-button class="toggle-button" color="primary" (click)="toggleMenu()">
+			<mat-icon>menu</mat-icon>
+		</button>
+	</div>
+	
+	<div #seccion class="botones-seccion me-2">
+		
+		<div class="botones-lista">
+			<button class="boton-nav" color="primary" [class.selected]="menu[0]" (click)="cambiar(0)" mat-flat-button
+				routerLink="/historicidad">
+				<mat-icon>timeline</mat-icon>
+				Historicidad
+			</button>
+
+			<button class="boton-nav" color="primary" [class.selected]="menu[1]" (click)="cambiar(1)" mat-flat-button
+				routerLink="/casos_uso">
+				<mat-icon>layers</mat-icon>
+				Casos de Uso
+			</button>
+		</div>
+	</div>
+</nav>

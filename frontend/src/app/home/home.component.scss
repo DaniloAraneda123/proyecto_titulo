@@ -1,0 +1,33 @@
+.gradient{
+  background: linear-gradient(180deg, rgba(155,175,210,1) 0%, rgba(153,197,253,1) 44%);
+}
+
+h1{
+  color:#2D0B0B;
+  font-size: xx-large;
+  font-weight: bolder;
+  text-align: center;
+}
+
+h2{
+  color: #2D0B0B;
+  text-align: center;
+}
+
+button{
+  display: block;
+  align-items: center;
+  border-radius: 25px;
+  padding: 15px;
+  color: white;
+  margin: auto;
+  background-color: rgb(16, 138, 16);
+  border: none;
+  font-size: large;
+}
+
+@media only screen and (max-width: 1200px) {
+  img{
+    width: 100%;
+  }
+}
